@@ -1,0 +1,20 @@
+let rec take n lst = if n = 0 then [] else match lst with x::xs -> x :: take (n-1) xs end;;
+let rec ones = 1 :: ones;; 
+let rec loop n = n :: loop (n+1);;
+let rec fib n m = m :: fib m (m+n);;
+take 35 (fib 0 1);;
+let rec odd n = if n = 0 then false else even (n-1)
+    and even n = if n = 0 then true else odd (n-1);;
+odd 4;;
+even 8;;
+let rec f m n =
+   if m = 0 then (m, n) :: (f (n+1) 0)
+   else (m, n) :: (f (m-1) (n+1));;
+
+
+let rec map2 f a b =
+    match (a, b) with ([], []) -> [] | (a::as, b::bs) -> (f a b) :: map2 f as bs end;;
+let rec tail lst = match lst with  x :: xs -> xs end;;
+
+let rec fib = 1:: 1:: (map2 (fun x -> fun y -> x + y) fib (tail fib));;
+

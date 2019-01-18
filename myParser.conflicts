@@ -1,0 +1,26 @@
+
+** Conflict (shift/reduce) in state 94.
+** Token involved: EQ
+** This state is reached from main after reading:
+
+LET REC var var 
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+main 
+command_expr EOF 
+(?)
+
+** In state 94, looking ahead at EQ, shifting is permitted
+** because of the following sub-derivation:
+
+expr 
+LET REC var var . EQ expr IN expr 
+
+** In state 94, looking ahead at EQ, reducing production
+** pattern_expr -> var 
+** is permitted because of the following sub-derivation:
+
+LET REC var pattern_expr EQ expr // lookahead token appears
+            var . 

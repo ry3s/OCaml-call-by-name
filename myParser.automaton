@@ -1,0 +1,1482 @@
+State 0:
+main' -> . main [ # ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 91
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On EOF shift to state 106
+-- On BOOL shift to state 18
+-- On main shift to state 107
+-- On factor_expr shift to state 19
+-- On expr shift to state 108
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On command_expr shift to state 109
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 1:
+expr -> MATCH . expr WITH branch_expr END [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 82
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 2:
+atomic_expr -> LPAR . expr COMMA expr RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+atomic_expr -> LPAR . expr RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 77
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 3:
+expr -> LET . pattern_expr EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+expr -> LET . REC var var EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On UNDERSCORE shift to state 4
+-- On REC shift to state 5
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 72
+
+State 4:
+pattern_expr -> UNDERSCORE . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> UNDERSCORE 
+-- On RPAR reduce production pattern_expr -> UNDERSCORE 
+-- On RBRA reduce production pattern_expr -> UNDERSCORE 
+-- On RARROW reduce production pattern_expr -> UNDERSCORE 
+-- On EQ reduce production pattern_expr -> UNDERSCORE 
+-- On CONS reduce production pattern_expr -> UNDERSCORE 
+-- On COMMA reduce production pattern_expr -> UNDERSCORE 
+
+State 5:
+expr -> LET REC . var var EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On ID shift to state 6
+-- On var shift to state 7
+
+State 6:
+var -> ID . [ UNDERSCORE SEMI RPAR RBRA RARROW LPAR LBRA INT ID EQ CONS COMMA BOOL ]
+-- On UNDERSCORE reduce production var -> ID 
+-- On SEMI reduce production var -> ID 
+-- On RPAR reduce production var -> ID 
+-- On RBRA reduce production var -> ID 
+-- On RARROW reduce production var -> ID 
+-- On LPAR reduce production var -> ID 
+-- On LBRA reduce production var -> ID 
+-- On INT reduce production var -> ID 
+-- On ID reduce production var -> ID 
+-- On EQ reduce production var -> ID 
+-- On CONS reduce production var -> ID 
+-- On COMMA reduce production var -> ID 
+-- On BOOL reduce production var -> ID 
+
+State 7:
+expr -> LET REC var . var EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On ID shift to state 6
+-- On var shift to state 8
+
+State 8:
+expr -> LET REC var var . EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On EQ shift to state 9
+
+State 9:
+expr -> LET REC var var EQ . expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 51
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 10:
+atomic_expr -> LBRA . RBRA [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+atomic_expr -> LBRA . list_expr RBRA [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On RBRA shift to state 11
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On list_expr shift to state 46
+-- On factor_expr shift to state 19
+-- On expr shift to state 48
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 11:
+atomic_expr -> LBRA RBRA . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> LBRA RBRA 
+-- On TIMES reduce production atomic_expr -> LBRA RBRA 
+-- On THEN reduce production atomic_expr -> LBRA RBRA 
+-- On SEMI reduce production atomic_expr -> LBRA RBRA 
+-- On RPAR reduce production atomic_expr -> LBRA RBRA 
+-- On RBRA reduce production atomic_expr -> LBRA RBRA 
+-- On PLUS reduce production atomic_expr -> LBRA RBRA 
+-- On MINUS reduce production atomic_expr -> LBRA RBRA 
+-- On LT reduce production atomic_expr -> LBRA RBRA 
+-- On LPAR reduce production atomic_expr -> LBRA RBRA 
+-- On LBRA reduce production atomic_expr -> LBRA RBRA 
+-- On INT reduce production atomic_expr -> LBRA RBRA 
+-- On IN reduce production atomic_expr -> LBRA RBRA 
+-- On ID reduce production atomic_expr -> LBRA RBRA 
+-- On EQ reduce production atomic_expr -> LBRA RBRA 
+-- On EOF reduce production atomic_expr -> LBRA RBRA 
+-- On EOC reduce production atomic_expr -> LBRA RBRA 
+-- On END reduce production atomic_expr -> LBRA RBRA 
+-- On ELSE reduce production atomic_expr -> LBRA RBRA 
+-- On DIV reduce production atomic_expr -> LBRA RBRA 
+-- On CONS reduce production atomic_expr -> LBRA RBRA 
+-- On COMMA reduce production atomic_expr -> LBRA RBRA 
+-- On BOOL reduce production atomic_expr -> LBRA RBRA 
+-- On BAR reduce production atomic_expr -> LBRA RBRA 
+
+State 12:
+atomic_expr -> INT . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> INT 
+-- On TIMES reduce production atomic_expr -> INT 
+-- On THEN reduce production atomic_expr -> INT 
+-- On SEMI reduce production atomic_expr -> INT 
+-- On RPAR reduce production atomic_expr -> INT 
+-- On RBRA reduce production atomic_expr -> INT 
+-- On PLUS reduce production atomic_expr -> INT 
+-- On MINUS reduce production atomic_expr -> INT 
+-- On LT reduce production atomic_expr -> INT 
+-- On LPAR reduce production atomic_expr -> INT 
+-- On LBRA reduce production atomic_expr -> INT 
+-- On INT reduce production atomic_expr -> INT 
+-- On IN reduce production atomic_expr -> INT 
+-- On ID reduce production atomic_expr -> INT 
+-- On EQ reduce production atomic_expr -> INT 
+-- On EOF reduce production atomic_expr -> INT 
+-- On EOC reduce production atomic_expr -> INT 
+-- On END reduce production atomic_expr -> INT 
+-- On ELSE reduce production atomic_expr -> INT 
+-- On DIV reduce production atomic_expr -> INT 
+-- On CONS reduce production atomic_expr -> INT 
+-- On COMMA reduce production atomic_expr -> INT 
+-- On BOOL reduce production atomic_expr -> INT 
+-- On BAR reduce production atomic_expr -> INT 
+
+State 13:
+expr -> IF . expr THEN expr ELSE expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 41
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 14:
+atomic_expr -> ID . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> ID 
+-- On TIMES reduce production atomic_expr -> ID 
+-- On THEN reduce production atomic_expr -> ID 
+-- On SEMI reduce production atomic_expr -> ID 
+-- On RPAR reduce production atomic_expr -> ID 
+-- On RBRA reduce production atomic_expr -> ID 
+-- On PLUS reduce production atomic_expr -> ID 
+-- On MINUS reduce production atomic_expr -> ID 
+-- On LT reduce production atomic_expr -> ID 
+-- On LPAR reduce production atomic_expr -> ID 
+-- On LBRA reduce production atomic_expr -> ID 
+-- On INT reduce production atomic_expr -> ID 
+-- On IN reduce production atomic_expr -> ID 
+-- On ID reduce production atomic_expr -> ID 
+-- On EQ reduce production atomic_expr -> ID 
+-- On EOF reduce production atomic_expr -> ID 
+-- On EOC reduce production atomic_expr -> ID 
+-- On END reduce production atomic_expr -> ID 
+-- On ELSE reduce production atomic_expr -> ID 
+-- On DIV reduce production atomic_expr -> ID 
+-- On CONS reduce production atomic_expr -> ID 
+-- On COMMA reduce production atomic_expr -> ID 
+-- On BOOL reduce production atomic_expr -> ID 
+-- On BAR reduce production atomic_expr -> ID 
+
+State 15:
+expr -> FUN . var RARROW expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On ID shift to state 6
+-- On var shift to state 16
+
+State 16:
+expr -> FUN var . RARROW expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On RARROW shift to state 17
+
+State 17:
+expr -> FUN var RARROW . expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 26
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 18:
+atomic_expr -> BOOL . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> BOOL 
+-- On TIMES reduce production atomic_expr -> BOOL 
+-- On THEN reduce production atomic_expr -> BOOL 
+-- On SEMI reduce production atomic_expr -> BOOL 
+-- On RPAR reduce production atomic_expr -> BOOL 
+-- On RBRA reduce production atomic_expr -> BOOL 
+-- On PLUS reduce production atomic_expr -> BOOL 
+-- On MINUS reduce production atomic_expr -> BOOL 
+-- On LT reduce production atomic_expr -> BOOL 
+-- On LPAR reduce production atomic_expr -> BOOL 
+-- On LBRA reduce production atomic_expr -> BOOL 
+-- On INT reduce production atomic_expr -> BOOL 
+-- On IN reduce production atomic_expr -> BOOL 
+-- On ID reduce production atomic_expr -> BOOL 
+-- On EQ reduce production atomic_expr -> BOOL 
+-- On EOF reduce production atomic_expr -> BOOL 
+-- On EOC reduce production atomic_expr -> BOOL 
+-- On END reduce production atomic_expr -> BOOL 
+-- On ELSE reduce production atomic_expr -> BOOL 
+-- On DIV reduce production atomic_expr -> BOOL 
+-- On CONS reduce production atomic_expr -> BOOL 
+-- On COMMA reduce production atomic_expr -> BOOL 
+-- On BOOL reduce production atomic_expr -> BOOL 
+-- On BAR reduce production atomic_expr -> BOOL 
+
+State 19:
+arith_expr -> factor_expr . [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+factor_expr -> factor_expr . TIMES app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+factor_expr -> factor_expr . DIV app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On TIMES shift to state 20
+-- On DIV shift to state 24
+-- On WITH reduce production arith_expr -> factor_expr 
+-- On THEN reduce production arith_expr -> factor_expr 
+-- On SEMI reduce production arith_expr -> factor_expr 
+-- On RPAR reduce production arith_expr -> factor_expr 
+-- On RBRA reduce production arith_expr -> factor_expr 
+-- On PLUS reduce production arith_expr -> factor_expr 
+-- On MINUS reduce production arith_expr -> factor_expr 
+-- On LT reduce production arith_expr -> factor_expr 
+-- On IN reduce production arith_expr -> factor_expr 
+-- On EQ reduce production arith_expr -> factor_expr 
+-- On EOF reduce production arith_expr -> factor_expr 
+-- On EOC reduce production arith_expr -> factor_expr 
+-- On END reduce production arith_expr -> factor_expr 
+-- On ELSE reduce production arith_expr -> factor_expr 
+-- On CONS reduce production arith_expr -> factor_expr 
+-- On COMMA reduce production arith_expr -> factor_expr 
+-- On BAR reduce production arith_expr -> factor_expr 
+
+State 20:
+factor_expr -> factor_expr TIMES . app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On atomic_expr shift to state 21
+-- On app_expr shift to state 22
+
+State 21:
+app_expr -> atomic_expr . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production app_expr -> atomic_expr 
+-- On TIMES reduce production app_expr -> atomic_expr 
+-- On THEN reduce production app_expr -> atomic_expr 
+-- On SEMI reduce production app_expr -> atomic_expr 
+-- On RPAR reduce production app_expr -> atomic_expr 
+-- On RBRA reduce production app_expr -> atomic_expr 
+-- On PLUS reduce production app_expr -> atomic_expr 
+-- On MINUS reduce production app_expr -> atomic_expr 
+-- On LT reduce production app_expr -> atomic_expr 
+-- On LPAR reduce production app_expr -> atomic_expr 
+-- On LBRA reduce production app_expr -> atomic_expr 
+-- On INT reduce production app_expr -> atomic_expr 
+-- On IN reduce production app_expr -> atomic_expr 
+-- On ID reduce production app_expr -> atomic_expr 
+-- On EQ reduce production app_expr -> atomic_expr 
+-- On EOF reduce production app_expr -> atomic_expr 
+-- On EOC reduce production app_expr -> atomic_expr 
+-- On END reduce production app_expr -> atomic_expr 
+-- On ELSE reduce production app_expr -> atomic_expr 
+-- On DIV reduce production app_expr -> atomic_expr 
+-- On CONS reduce production app_expr -> atomic_expr 
+-- On COMMA reduce production app_expr -> atomic_expr 
+-- On BOOL reduce production app_expr -> atomic_expr 
+-- On BAR reduce production app_expr -> atomic_expr 
+
+State 22:
+app_expr -> app_expr . atomic_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+factor_expr -> factor_expr TIMES app_expr . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On atomic_expr shift to state 23
+-- On WITH reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On TIMES reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On THEN reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On SEMI reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On RPAR reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On RBRA reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On PLUS reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On MINUS reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On LT reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On IN reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On EQ reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On EOF reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On EOC reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On END reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On ELSE reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On DIV reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On CONS reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On COMMA reduce production factor_expr -> factor_expr TIMES app_expr 
+-- On BAR reduce production factor_expr -> factor_expr TIMES app_expr 
+
+State 23:
+app_expr -> app_expr atomic_expr . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production app_expr -> app_expr atomic_expr 
+-- On TIMES reduce production app_expr -> app_expr atomic_expr 
+-- On THEN reduce production app_expr -> app_expr atomic_expr 
+-- On SEMI reduce production app_expr -> app_expr atomic_expr 
+-- On RPAR reduce production app_expr -> app_expr atomic_expr 
+-- On RBRA reduce production app_expr -> app_expr atomic_expr 
+-- On PLUS reduce production app_expr -> app_expr atomic_expr 
+-- On MINUS reduce production app_expr -> app_expr atomic_expr 
+-- On LT reduce production app_expr -> app_expr atomic_expr 
+-- On LPAR reduce production app_expr -> app_expr atomic_expr 
+-- On LBRA reduce production app_expr -> app_expr atomic_expr 
+-- On INT reduce production app_expr -> app_expr atomic_expr 
+-- On IN reduce production app_expr -> app_expr atomic_expr 
+-- On ID reduce production app_expr -> app_expr atomic_expr 
+-- On EQ reduce production app_expr -> app_expr atomic_expr 
+-- On EOF reduce production app_expr -> app_expr atomic_expr 
+-- On EOC reduce production app_expr -> app_expr atomic_expr 
+-- On END reduce production app_expr -> app_expr atomic_expr 
+-- On ELSE reduce production app_expr -> app_expr atomic_expr 
+-- On DIV reduce production app_expr -> app_expr atomic_expr 
+-- On CONS reduce production app_expr -> app_expr atomic_expr 
+-- On COMMA reduce production app_expr -> app_expr atomic_expr 
+-- On BOOL reduce production app_expr -> app_expr atomic_expr 
+-- On BAR reduce production app_expr -> app_expr atomic_expr 
+
+State 24:
+factor_expr -> factor_expr DIV . app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On atomic_expr shift to state 21
+-- On app_expr shift to state 25
+
+State 25:
+app_expr -> app_expr . atomic_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+factor_expr -> factor_expr DIV app_expr . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On atomic_expr shift to state 23
+-- On WITH reduce production factor_expr -> factor_expr DIV app_expr 
+-- On TIMES reduce production factor_expr -> factor_expr DIV app_expr 
+-- On THEN reduce production factor_expr -> factor_expr DIV app_expr 
+-- On SEMI reduce production factor_expr -> factor_expr DIV app_expr 
+-- On RPAR reduce production factor_expr -> factor_expr DIV app_expr 
+-- On RBRA reduce production factor_expr -> factor_expr DIV app_expr 
+-- On PLUS reduce production factor_expr -> factor_expr DIV app_expr 
+-- On MINUS reduce production factor_expr -> factor_expr DIV app_expr 
+-- On LT reduce production factor_expr -> factor_expr DIV app_expr 
+-- On IN reduce production factor_expr -> factor_expr DIV app_expr 
+-- On EQ reduce production factor_expr -> factor_expr DIV app_expr 
+-- On EOF reduce production factor_expr -> factor_expr DIV app_expr 
+-- On EOC reduce production factor_expr -> factor_expr DIV app_expr 
+-- On END reduce production factor_expr -> factor_expr DIV app_expr 
+-- On ELSE reduce production factor_expr -> factor_expr DIV app_expr 
+-- On DIV reduce production factor_expr -> factor_expr DIV app_expr 
+-- On CONS reduce production factor_expr -> factor_expr DIV app_expr 
+-- On COMMA reduce production factor_expr -> factor_expr DIV app_expr 
+-- On BAR reduce production factor_expr -> factor_expr DIV app_expr 
+
+State 26:
+expr -> FUN var RARROW expr . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH reduce production expr -> FUN var RARROW expr 
+-- On THEN reduce production expr -> FUN var RARROW expr 
+-- On SEMI reduce production expr -> FUN var RARROW expr 
+-- On RPAR reduce production expr -> FUN var RARROW expr 
+-- On RBRA reduce production expr -> FUN var RARROW expr 
+-- On IN reduce production expr -> FUN var RARROW expr 
+-- On EOF reduce production expr -> FUN var RARROW expr 
+-- On EOC reduce production expr -> FUN var RARROW expr 
+-- On END reduce production expr -> FUN var RARROW expr 
+-- On ELSE reduce production expr -> FUN var RARROW expr 
+-- On COMMA reduce production expr -> FUN var RARROW expr 
+-- On BAR reduce production expr -> FUN var RARROW expr 
+
+State 27:
+compare_expr -> cons_expr . [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+cons_expr -> cons_expr . CONS arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On CONS shift to state 28
+-- On WITH reduce production compare_expr -> cons_expr 
+-- On THEN reduce production compare_expr -> cons_expr 
+-- On SEMI reduce production compare_expr -> cons_expr 
+-- On RPAR reduce production compare_expr -> cons_expr 
+-- On RBRA reduce production compare_expr -> cons_expr 
+-- On LT reduce production compare_expr -> cons_expr 
+-- On IN reduce production compare_expr -> cons_expr 
+-- On EQ reduce production compare_expr -> cons_expr 
+-- On EOF reduce production compare_expr -> cons_expr 
+-- On EOC reduce production compare_expr -> cons_expr 
+-- On END reduce production compare_expr -> cons_expr 
+-- On ELSE reduce production compare_expr -> cons_expr 
+-- On COMMA reduce production compare_expr -> cons_expr 
+-- On BAR reduce production compare_expr -> cons_expr 
+
+State 28:
+cons_expr -> cons_expr CONS . arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 29
+-- On app_expr shift to state 32
+
+State 29:
+arith_expr -> arith_expr . PLUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+arith_expr -> arith_expr . MINUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+cons_expr -> cons_expr CONS arith_expr . [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On PLUS shift to state 30
+-- On MINUS shift to state 33
+-- On WITH reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On THEN reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On SEMI reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On RPAR reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On RBRA reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On LT reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On IN reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On EQ reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On EOF reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On EOC reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On END reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On ELSE reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On CONS reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On COMMA reduce production cons_expr -> cons_expr CONS arith_expr 
+-- On BAR reduce production cons_expr -> cons_expr CONS arith_expr 
+
+State 30:
+arith_expr -> arith_expr PLUS . factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 31
+-- On atomic_expr shift to state 21
+-- On app_expr shift to state 32
+
+State 31:
+arith_expr -> arith_expr PLUS factor_expr . [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+factor_expr -> factor_expr . TIMES app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+factor_expr -> factor_expr . DIV app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On TIMES shift to state 20
+-- On DIV shift to state 24
+-- On WITH reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On THEN reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On SEMI reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On RPAR reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On RBRA reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On PLUS reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On MINUS reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On LT reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On IN reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On EQ reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On EOF reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On EOC reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On END reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On ELSE reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On CONS reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On COMMA reduce production arith_expr -> arith_expr PLUS factor_expr 
+-- On BAR reduce production arith_expr -> arith_expr PLUS factor_expr 
+
+State 32:
+app_expr -> app_expr . atomic_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+factor_expr -> app_expr . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On atomic_expr shift to state 23
+-- On WITH reduce production factor_expr -> app_expr 
+-- On TIMES reduce production factor_expr -> app_expr 
+-- On THEN reduce production factor_expr -> app_expr 
+-- On SEMI reduce production factor_expr -> app_expr 
+-- On RPAR reduce production factor_expr -> app_expr 
+-- On RBRA reduce production factor_expr -> app_expr 
+-- On PLUS reduce production factor_expr -> app_expr 
+-- On MINUS reduce production factor_expr -> app_expr 
+-- On LT reduce production factor_expr -> app_expr 
+-- On IN reduce production factor_expr -> app_expr 
+-- On EQ reduce production factor_expr -> app_expr 
+-- On EOF reduce production factor_expr -> app_expr 
+-- On EOC reduce production factor_expr -> app_expr 
+-- On END reduce production factor_expr -> app_expr 
+-- On ELSE reduce production factor_expr -> app_expr 
+-- On DIV reduce production factor_expr -> app_expr 
+-- On CONS reduce production factor_expr -> app_expr 
+-- On COMMA reduce production factor_expr -> app_expr 
+-- On BAR reduce production factor_expr -> app_expr 
+
+State 33:
+arith_expr -> arith_expr MINUS . factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 34
+-- On atomic_expr shift to state 21
+-- On app_expr shift to state 32
+
+State 34:
+arith_expr -> arith_expr MINUS factor_expr . [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+factor_expr -> factor_expr . TIMES app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+factor_expr -> factor_expr . DIV app_expr [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE DIV CONS COMMA BAR ]
+-- On TIMES shift to state 20
+-- On DIV shift to state 24
+-- On WITH reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On THEN reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On SEMI reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On RPAR reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On RBRA reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On PLUS reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On MINUS reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On LT reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On IN reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On EQ reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On EOF reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On EOC reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On END reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On ELSE reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On CONS reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On COMMA reduce production arith_expr -> arith_expr MINUS factor_expr 
+-- On BAR reduce production arith_expr -> arith_expr MINUS factor_expr 
+
+State 35:
+compare_expr -> compare_expr . EQ arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+compare_expr -> compare_expr . LT arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+expr -> compare_expr . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On LT shift to state 36
+-- On EQ shift to state 38
+-- On WITH reduce production expr -> compare_expr 
+-- On THEN reduce production expr -> compare_expr 
+-- On SEMI reduce production expr -> compare_expr 
+-- On RPAR reduce production expr -> compare_expr 
+-- On RBRA reduce production expr -> compare_expr 
+-- On IN reduce production expr -> compare_expr 
+-- On EOF reduce production expr -> compare_expr 
+-- On EOC reduce production expr -> compare_expr 
+-- On END reduce production expr -> compare_expr 
+-- On ELSE reduce production expr -> compare_expr 
+-- On COMMA reduce production expr -> compare_expr 
+-- On BAR reduce production expr -> compare_expr 
+
+State 36:
+compare_expr -> compare_expr LT . arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 37
+-- On app_expr shift to state 32
+
+State 37:
+arith_expr -> arith_expr . PLUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE COMMA BAR ]
+arith_expr -> arith_expr . MINUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE COMMA BAR ]
+compare_expr -> compare_expr LT arith_expr . [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+-- On PLUS shift to state 30
+-- On MINUS shift to state 33
+-- On WITH reduce production compare_expr -> compare_expr LT arith_expr 
+-- On THEN reduce production compare_expr -> compare_expr LT arith_expr 
+-- On SEMI reduce production compare_expr -> compare_expr LT arith_expr 
+-- On RPAR reduce production compare_expr -> compare_expr LT arith_expr 
+-- On RBRA reduce production compare_expr -> compare_expr LT arith_expr 
+-- On LT reduce production compare_expr -> compare_expr LT arith_expr 
+-- On IN reduce production compare_expr -> compare_expr LT arith_expr 
+-- On EQ reduce production compare_expr -> compare_expr LT arith_expr 
+-- On EOF reduce production compare_expr -> compare_expr LT arith_expr 
+-- On EOC reduce production compare_expr -> compare_expr LT arith_expr 
+-- On END reduce production compare_expr -> compare_expr LT arith_expr 
+-- On ELSE reduce production compare_expr -> compare_expr LT arith_expr 
+-- On COMMA reduce production compare_expr -> compare_expr LT arith_expr 
+-- On BAR reduce production compare_expr -> compare_expr LT arith_expr 
+
+State 38:
+compare_expr -> compare_expr EQ . arith_expr [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+-- On LPAR shift to state 2
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On ID shift to state 14
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 39
+-- On app_expr shift to state 32
+
+State 39:
+arith_expr -> arith_expr . PLUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE COMMA BAR ]
+arith_expr -> arith_expr . MINUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE COMMA BAR ]
+compare_expr -> compare_expr EQ arith_expr . [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE COMMA BAR ]
+-- On PLUS shift to state 30
+-- On MINUS shift to state 33
+-- On WITH reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On THEN reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On SEMI reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On RPAR reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On RBRA reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On LT reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On IN reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On EQ reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On EOF reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On EOC reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On END reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On ELSE reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On COMMA reduce production compare_expr -> compare_expr EQ arith_expr 
+-- On BAR reduce production compare_expr -> compare_expr EQ arith_expr 
+
+State 40:
+arith_expr -> arith_expr . PLUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+arith_expr -> arith_expr . MINUS factor_expr [ WITH THEN SEMI RPAR RBRA PLUS MINUS LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+cons_expr -> arith_expr . [ WITH THEN SEMI RPAR RBRA LT IN EQ EOF EOC END ELSE CONS COMMA BAR ]
+-- On PLUS shift to state 30
+-- On MINUS shift to state 33
+-- On WITH reduce production cons_expr -> arith_expr 
+-- On THEN reduce production cons_expr -> arith_expr 
+-- On SEMI reduce production cons_expr -> arith_expr 
+-- On RPAR reduce production cons_expr -> arith_expr 
+-- On RBRA reduce production cons_expr -> arith_expr 
+-- On LT reduce production cons_expr -> arith_expr 
+-- On IN reduce production cons_expr -> arith_expr 
+-- On EQ reduce production cons_expr -> arith_expr 
+-- On EOF reduce production cons_expr -> arith_expr 
+-- On EOC reduce production cons_expr -> arith_expr 
+-- On END reduce production cons_expr -> arith_expr 
+-- On ELSE reduce production cons_expr -> arith_expr 
+-- On CONS reduce production cons_expr -> arith_expr 
+-- On COMMA reduce production cons_expr -> arith_expr 
+-- On BAR reduce production cons_expr -> arith_expr 
+
+State 41:
+expr -> IF expr . THEN expr ELSE expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On THEN shift to state 42
+
+State 42:
+expr -> IF expr THEN . expr ELSE expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 43
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 43:
+expr -> IF expr THEN expr . ELSE expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On ELSE shift to state 44
+
+State 44:
+expr -> IF expr THEN expr ELSE . expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 45
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 45:
+expr -> IF expr THEN expr ELSE expr . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH reduce production expr -> IF expr THEN expr ELSE expr 
+-- On THEN reduce production expr -> IF expr THEN expr ELSE expr 
+-- On SEMI reduce production expr -> IF expr THEN expr ELSE expr 
+-- On RPAR reduce production expr -> IF expr THEN expr ELSE expr 
+-- On RBRA reduce production expr -> IF expr THEN expr ELSE expr 
+-- On IN reduce production expr -> IF expr THEN expr ELSE expr 
+-- On EOF reduce production expr -> IF expr THEN expr ELSE expr 
+-- On EOC reduce production expr -> IF expr THEN expr ELSE expr 
+-- On END reduce production expr -> IF expr THEN expr ELSE expr 
+-- On ELSE reduce production expr -> IF expr THEN expr ELSE expr 
+-- On COMMA reduce production expr -> IF expr THEN expr ELSE expr 
+-- On BAR reduce production expr -> IF expr THEN expr ELSE expr 
+
+State 46:
+atomic_expr -> LBRA list_expr . RBRA [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On RBRA shift to state 47
+
+State 47:
+atomic_expr -> LBRA list_expr RBRA . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On TIMES reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On THEN reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On SEMI reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On RPAR reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On RBRA reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On PLUS reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On MINUS reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On LT reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On LPAR reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On LBRA reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On INT reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On IN reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On ID reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On EQ reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On EOF reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On EOC reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On END reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On ELSE reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On DIV reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On CONS reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On COMMA reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On BOOL reduce production atomic_expr -> LBRA list_expr RBRA 
+-- On BAR reduce production atomic_expr -> LBRA list_expr RBRA 
+
+State 48:
+list_expr -> expr . SEMI list_expr [ RBRA ]
+list_expr -> expr . [ RBRA ]
+-- On SEMI shift to state 49
+-- On RBRA reduce production list_expr -> expr 
+
+State 49:
+list_expr -> expr SEMI . list_expr [ RBRA ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On list_expr shift to state 50
+-- On factor_expr shift to state 19
+-- On expr shift to state 48
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 50:
+list_expr -> expr SEMI list_expr . [ RBRA ]
+-- On RBRA reduce production list_expr -> expr SEMI list_expr 
+
+State 51:
+expr -> LET REC var var EQ expr . IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On IN shift to state 52
+
+State 52:
+expr -> LET REC var var EQ expr IN . expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 53
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 53:
+expr -> LET REC var var EQ expr IN expr . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH reduce production expr -> LET REC var var EQ expr IN expr 
+-- On THEN reduce production expr -> LET REC var var EQ expr IN expr 
+-- On SEMI reduce production expr -> LET REC var var EQ expr IN expr 
+-- On RPAR reduce production expr -> LET REC var var EQ expr IN expr 
+-- On RBRA reduce production expr -> LET REC var var EQ expr IN expr 
+-- On IN reduce production expr -> LET REC var var EQ expr IN expr 
+-- On EOF reduce production expr -> LET REC var var EQ expr IN expr 
+-- On EOC reduce production expr -> LET REC var var EQ expr IN expr 
+-- On END reduce production expr -> LET REC var var EQ expr IN expr 
+-- On ELSE reduce production expr -> LET REC var var EQ expr IN expr 
+-- On COMMA reduce production expr -> LET REC var var EQ expr IN expr 
+-- On BAR reduce production expr -> LET REC var var EQ expr IN expr 
+
+State 54:
+pattern_expr -> LPAR . pattern_expr COMMA pattern_expr RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+pattern_expr -> LPAR . pattern_expr RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 67
+
+State 55:
+pattern_expr -> LBRA . RBRA [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+pattern_expr -> LBRA . list_pattern_expr RBRA [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On UNDERSCORE shift to state 4
+-- On RBRA shift to state 56
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 60
+-- On list_pattern_expr shift to state 65
+
+State 56:
+pattern_expr -> LBRA RBRA . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> LBRA RBRA 
+-- On RPAR reduce production pattern_expr -> LBRA RBRA 
+-- On RBRA reduce production pattern_expr -> LBRA RBRA 
+-- On RARROW reduce production pattern_expr -> LBRA RBRA 
+-- On EQ reduce production pattern_expr -> LBRA RBRA 
+-- On CONS reduce production pattern_expr -> LBRA RBRA 
+-- On COMMA reduce production pattern_expr -> LBRA RBRA 
+
+State 57:
+pattern_expr -> INT . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> INT 
+-- On RPAR reduce production pattern_expr -> INT 
+-- On RBRA reduce production pattern_expr -> INT 
+-- On RARROW reduce production pattern_expr -> INT 
+-- On EQ reduce production pattern_expr -> INT 
+-- On CONS reduce production pattern_expr -> INT 
+-- On COMMA reduce production pattern_expr -> INT 
+
+State 58:
+pattern_expr -> BOOL . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> BOOL 
+-- On RPAR reduce production pattern_expr -> BOOL 
+-- On RBRA reduce production pattern_expr -> BOOL 
+-- On RARROW reduce production pattern_expr -> BOOL 
+-- On EQ reduce production pattern_expr -> BOOL 
+-- On CONS reduce production pattern_expr -> BOOL 
+-- On COMMA reduce production pattern_expr -> BOOL 
+
+State 59:
+pattern_expr -> var . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> var 
+-- On RPAR reduce production pattern_expr -> var 
+-- On RBRA reduce production pattern_expr -> var 
+-- On RARROW reduce production pattern_expr -> var 
+-- On EQ reduce production pattern_expr -> var 
+-- On CONS reduce production pattern_expr -> var 
+-- On COMMA reduce production pattern_expr -> var 
+
+State 60:
+list_pattern_expr -> pattern_expr . [ RBRA ]
+list_pattern_expr -> pattern_expr . SEMI list_pattern_expr [ RBRA ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ SEMI RBRA CONS ]
+-- On SEMI shift to state 61
+-- On CONS shift to state 63
+-- On RBRA reduce production list_pattern_expr -> pattern_expr 
+
+State 61:
+list_pattern_expr -> pattern_expr SEMI . list_pattern_expr [ RBRA ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 60
+-- On list_pattern_expr shift to state 62
+
+State 62:
+list_pattern_expr -> pattern_expr SEMI list_pattern_expr . [ RBRA ]
+-- On RBRA reduce production list_pattern_expr -> pattern_expr SEMI list_pattern_expr 
+
+State 63:
+pattern_expr -> pattern_expr CONS . pattern_expr [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 64
+
+State 64:
+pattern_expr -> pattern_expr . CONS pattern_expr [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+pattern_expr -> pattern_expr CONS pattern_expr . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On CONS shift to state 63
+-- On SEMI reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+-- On RPAR reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+-- On RBRA reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+-- On RARROW reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+-- On EQ reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+-- On COMMA reduce production pattern_expr -> pattern_expr CONS pattern_expr 
+
+State 65:
+pattern_expr -> LBRA list_pattern_expr . RBRA [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On RBRA shift to state 66
+
+State 66:
+pattern_expr -> LBRA list_pattern_expr RBRA . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On RPAR reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On RBRA reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On RARROW reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On EQ reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On CONS reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+-- On COMMA reduce production pattern_expr -> LBRA list_pattern_expr RBRA 
+
+State 67:
+pattern_expr -> LPAR pattern_expr . COMMA pattern_expr RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ RPAR CONS COMMA ]
+pattern_expr -> LPAR pattern_expr . RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On RPAR shift to state 68
+-- On CONS shift to state 63
+-- On COMMA shift to state 69
+
+State 68:
+pattern_expr -> LPAR pattern_expr RPAR . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On RPAR reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On RBRA reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On RARROW reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On EQ reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On CONS reduce production pattern_expr -> LPAR pattern_expr RPAR 
+-- On COMMA reduce production pattern_expr -> LPAR pattern_expr RPAR 
+
+State 69:
+pattern_expr -> LPAR pattern_expr COMMA . pattern_expr RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 70
+
+State 70:
+pattern_expr -> LPAR pattern_expr COMMA pattern_expr . RPAR [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ RPAR CONS ]
+-- On RPAR shift to state 71
+-- On CONS shift to state 63
+
+State 71:
+pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR . [ SEMI RPAR RBRA RARROW EQ CONS COMMA ]
+-- On SEMI reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On RPAR reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On RBRA reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On RARROW reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On EQ reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On CONS reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+-- On COMMA reduce production pattern_expr -> LPAR pattern_expr COMMA pattern_expr RPAR 
+
+State 72:
+expr -> LET pattern_expr . EQ expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ EQ CONS ]
+-- On EQ shift to state 73
+-- On CONS shift to state 63
+
+State 73:
+expr -> LET pattern_expr EQ . expr IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 74
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 74:
+expr -> LET pattern_expr EQ expr . IN expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On IN shift to state 75
+
+State 75:
+expr -> LET pattern_expr EQ expr IN . expr [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 76
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 76:
+expr -> LET pattern_expr EQ expr IN expr . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On THEN reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On SEMI reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On RPAR reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On RBRA reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On IN reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On EOF reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On EOC reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On END reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On ELSE reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On COMMA reduce production expr -> LET pattern_expr EQ expr IN expr 
+-- On BAR reduce production expr -> LET pattern_expr EQ expr IN expr 
+
+State 77:
+atomic_expr -> LPAR expr . COMMA expr RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+atomic_expr -> LPAR expr . RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On RPAR shift to state 78
+-- On COMMA shift to state 79
+
+State 78:
+atomic_expr -> LPAR expr RPAR . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> LPAR expr RPAR 
+-- On TIMES reduce production atomic_expr -> LPAR expr RPAR 
+-- On THEN reduce production atomic_expr -> LPAR expr RPAR 
+-- On SEMI reduce production atomic_expr -> LPAR expr RPAR 
+-- On RPAR reduce production atomic_expr -> LPAR expr RPAR 
+-- On RBRA reduce production atomic_expr -> LPAR expr RPAR 
+-- On PLUS reduce production atomic_expr -> LPAR expr RPAR 
+-- On MINUS reduce production atomic_expr -> LPAR expr RPAR 
+-- On LT reduce production atomic_expr -> LPAR expr RPAR 
+-- On LPAR reduce production atomic_expr -> LPAR expr RPAR 
+-- On LBRA reduce production atomic_expr -> LPAR expr RPAR 
+-- On INT reduce production atomic_expr -> LPAR expr RPAR 
+-- On IN reduce production atomic_expr -> LPAR expr RPAR 
+-- On ID reduce production atomic_expr -> LPAR expr RPAR 
+-- On EQ reduce production atomic_expr -> LPAR expr RPAR 
+-- On EOF reduce production atomic_expr -> LPAR expr RPAR 
+-- On EOC reduce production atomic_expr -> LPAR expr RPAR 
+-- On END reduce production atomic_expr -> LPAR expr RPAR 
+-- On ELSE reduce production atomic_expr -> LPAR expr RPAR 
+-- On DIV reduce production atomic_expr -> LPAR expr RPAR 
+-- On CONS reduce production atomic_expr -> LPAR expr RPAR 
+-- On COMMA reduce production atomic_expr -> LPAR expr RPAR 
+-- On BOOL reduce production atomic_expr -> LPAR expr RPAR 
+-- On BAR reduce production atomic_expr -> LPAR expr RPAR 
+
+State 79:
+atomic_expr -> LPAR expr COMMA . expr RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 80
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 80:
+atomic_expr -> LPAR expr COMMA expr . RPAR [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On RPAR shift to state 81
+
+State 81:
+atomic_expr -> LPAR expr COMMA expr RPAR . [ WITH TIMES THEN SEMI RPAR RBRA PLUS MINUS LT LPAR LBRA INT IN ID EQ EOF EOC END ELSE DIV CONS COMMA BOOL BAR ]
+-- On WITH reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On TIMES reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On THEN reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On SEMI reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On RPAR reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On RBRA reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On PLUS reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On MINUS reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On LT reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On LPAR reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On LBRA reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On INT reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On IN reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On ID reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On EQ reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On EOF reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On EOC reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On END reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On ELSE reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On DIV reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On CONS reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On COMMA reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On BOOL reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+-- On BAR reduce production atomic_expr -> LPAR expr COMMA expr RPAR 
+
+State 82:
+expr -> MATCH expr . WITH branch_expr END [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH shift to state 83
+
+State 83:
+expr -> MATCH expr WITH . branch_expr END [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 84
+-- On branch_expr shift to state 89
+
+State 84:
+branch_expr -> pattern_expr . RARROW expr BAR branch_expr [ END ]
+branch_expr -> pattern_expr . RARROW expr [ END ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ RARROW CONS ]
+-- On RARROW shift to state 85
+-- On CONS shift to state 63
+
+State 85:
+branch_expr -> pattern_expr RARROW . expr BAR branch_expr [ END ]
+branch_expr -> pattern_expr RARROW . expr [ END ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 86
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 86:
+branch_expr -> pattern_expr RARROW expr . BAR branch_expr [ END ]
+branch_expr -> pattern_expr RARROW expr . [ END ]
+-- On BAR shift to state 87
+-- On END reduce production branch_expr -> pattern_expr RARROW expr 
+
+State 87:
+branch_expr -> pattern_expr RARROW expr BAR . branch_expr [ END ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 84
+-- On branch_expr shift to state 88
+
+State 88:
+branch_expr -> pattern_expr RARROW expr BAR branch_expr . [ END ]
+-- On END reduce production branch_expr -> pattern_expr RARROW expr BAR branch_expr 
+
+State 89:
+expr -> MATCH expr WITH branch_expr . END [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On END shift to state 90
+
+State 90:
+expr -> MATCH expr WITH branch_expr END . [ WITH THEN SEMI RPAR RBRA IN EOF EOC END ELSE COMMA BAR ]
+-- On WITH reduce production expr -> MATCH expr WITH branch_expr END 
+-- On THEN reduce production expr -> MATCH expr WITH branch_expr END 
+-- On SEMI reduce production expr -> MATCH expr WITH branch_expr END 
+-- On RPAR reduce production expr -> MATCH expr WITH branch_expr END 
+-- On RBRA reduce production expr -> MATCH expr WITH branch_expr END 
+-- On IN reduce production expr -> MATCH expr WITH branch_expr END 
+-- On EOF reduce production expr -> MATCH expr WITH branch_expr END 
+-- On EOC reduce production expr -> MATCH expr WITH branch_expr END 
+-- On END reduce production expr -> MATCH expr WITH branch_expr END 
+-- On ELSE reduce production expr -> MATCH expr WITH branch_expr END 
+-- On COMMA reduce production expr -> MATCH expr WITH branch_expr END 
+-- On BAR reduce production expr -> MATCH expr WITH branch_expr END 
+
+State 91:
+command_expr -> LET . pattern_expr EQ expr [ EOF EOC ]
+command_expr -> LET . REC var pattern_expr EQ expr [ EOF EOC ]
+command_expr -> LET . REC var var argument_expr [ EOF EOC ]
+expr -> LET . pattern_expr EQ expr IN expr [ EOF EOC ]
+expr -> LET . REC var var EQ expr IN expr [ EOF EOC ]
+-- On UNDERSCORE shift to state 4
+-- On REC shift to state 92
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 59
+-- On pattern_expr shift to state 103
+
+State 92:
+command_expr -> LET REC . var pattern_expr EQ expr [ EOF EOC ]
+command_expr -> LET REC . var var argument_expr [ EOF EOC ]
+expr -> LET REC . var var EQ expr IN expr [ EOF EOC ]
+-- On ID shift to state 6
+-- On var shift to state 93
+
+State 93:
+command_expr -> LET REC var . pattern_expr EQ expr [ EOF EOC ]
+command_expr -> LET REC var . var argument_expr [ EOF EOC ]
+expr -> LET REC var . var EQ expr IN expr [ EOF EOC ]
+-- On UNDERSCORE shift to state 4
+-- On LPAR shift to state 54
+-- On LBRA shift to state 55
+-- On INT shift to state 57
+-- On ID shift to state 6
+-- On BOOL shift to state 58
+-- On var shift to state 94
+-- On pattern_expr shift to state 100
+
+State 94:
+command_expr -> LET REC var var . argument_expr [ EOF EOC ]
+expr -> LET REC var var . EQ expr IN expr [ EOF EOC ]
+pattern_expr -> var . [ EQ CONS ]
+-- On ID shift to state 6
+-- On EQ shift to state 9
+-- On var shift to state 95
+-- On argument_expr shift to state 99
+-- On EQ reduce production pattern_expr -> var 
+-- On CONS reduce production pattern_expr -> var 
+** Conflict on EQ
+
+State 95:
+argument_expr -> var . argument_expr [ EOF EOC ]
+argument_expr -> var . EQ expr [ EOF EOC ]
+-- On ID shift to state 6
+-- On EQ shift to state 96
+-- On var shift to state 95
+-- On argument_expr shift to state 98
+
+State 96:
+argument_expr -> var EQ . expr [ EOF EOC ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 97
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 97:
+argument_expr -> var EQ expr . [ EOF EOC ]
+-- On EOF reduce production argument_expr -> var EQ expr 
+-- On EOC reduce production argument_expr -> var EQ expr 
+
+State 98:
+argument_expr -> var argument_expr . [ EOF EOC ]
+-- On EOF reduce production argument_expr -> var argument_expr 
+-- On EOC reduce production argument_expr -> var argument_expr 
+
+State 99:
+command_expr -> LET REC var var argument_expr . [ EOF EOC ]
+-- On EOF reduce production command_expr -> LET REC var var argument_expr 
+-- On EOC reduce production command_expr -> LET REC var var argument_expr 
+
+State 100:
+command_expr -> LET REC var pattern_expr . EQ expr [ EOF EOC ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ EQ CONS ]
+-- On EQ shift to state 101
+-- On CONS shift to state 63
+
+State 101:
+command_expr -> LET REC var pattern_expr EQ . expr [ EOF EOC ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 102
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 102:
+command_expr -> LET REC var pattern_expr EQ expr . [ EOF EOC ]
+-- On EOF reduce production command_expr -> LET REC var pattern_expr EQ expr 
+-- On EOC reduce production command_expr -> LET REC var pattern_expr EQ expr 
+
+State 103:
+command_expr -> LET pattern_expr . EQ expr [ EOF EOC ]
+expr -> LET pattern_expr . EQ expr IN expr [ EOF EOC ]
+pattern_expr -> pattern_expr . CONS pattern_expr [ EQ CONS ]
+-- On EQ shift to state 104
+-- On CONS shift to state 63
+
+State 104:
+command_expr -> LET pattern_expr EQ . expr [ EOF EOC ]
+expr -> LET pattern_expr EQ . expr IN expr [ EOF EOC ]
+-- On MATCH shift to state 1
+-- On LPAR shift to state 2
+-- On LET shift to state 3
+-- On LBRA shift to state 10
+-- On INT shift to state 12
+-- On IF shift to state 13
+-- On ID shift to state 14
+-- On FUN shift to state 15
+-- On BOOL shift to state 18
+-- On factor_expr shift to state 19
+-- On expr shift to state 105
+-- On cons_expr shift to state 27
+-- On compare_expr shift to state 35
+-- On atomic_expr shift to state 21
+-- On arith_expr shift to state 40
+-- On app_expr shift to state 32
+
+State 105:
+command_expr -> LET pattern_expr EQ expr . [ EOF EOC ]
+expr -> LET pattern_expr EQ expr . IN expr [ EOF EOC ]
+-- On IN shift to state 75
+-- On EOF reduce production command_expr -> LET pattern_expr EQ expr 
+-- On EOC reduce production command_expr -> LET pattern_expr EQ expr 
+
+State 106:
+main -> EOF . [ # ]
+-- On # reduce production main -> EOF 
+
+State 107:
+main' -> main . [ # ]
+-- On # accept main
+
+State 108:
+command_expr -> expr . [ EOF EOC ]
+-- On EOF reduce production command_expr -> expr 
+-- On EOC reduce production command_expr -> expr 
+
+State 109:
+main -> command_expr . EOF [ # ]
+main -> command_expr . EOC [ # ]
+-- On EOF shift to state 110
+-- On EOC shift to state 111
+
+State 110:
+main -> command_expr EOF . [ # ]
+-- On # reduce production main -> command_expr EOF 
+
+State 111:
+main -> command_expr EOC . [ # ]
+-- On # reduce production main -> command_expr EOC 
+
